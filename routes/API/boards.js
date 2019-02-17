@@ -16,6 +16,16 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/search_options' , function(req, res, next){
+
+});
+
+router.post('/get' , function(req, res, next){
+  res.set('Content-Type' , 'application/json');
+
+
+});
+
 router.get('/example' , function(req, res, next){
   var __TEST_DATA = {};
   __TEST_DATA.status = 'SUCCESS';
@@ -28,6 +38,7 @@ router.get('/example' , function(req, res, next){
     person.hp = '010-' + (Math.floor((Math.random() * 9000) + 1000)) + '-' + (Math.floor((Math.random() * 9000) + 1000));
     person.mail = person.name + '@' + mails[Math.floor((Math.random()) * 5)];
     person.grade = Math.floor(Math.random() * 4) + 1;
+    person.age = Math.floor(Math.random() * 50) + 10;
     __TEST_DATA.data.push(person);
   }
   
