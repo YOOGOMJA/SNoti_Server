@@ -6,11 +6,8 @@ import { Crawler } from '../../lib/crawler/crawler';
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  // res.send('respond with a resource');
-  
   res.set('Content-Type', 'application/json');
   
-  console.log(Crawler.get);
   Crawler.get()
   .then(data => { res.send(data); })
   .catch(function(){ 
