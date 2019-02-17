@@ -3,6 +3,7 @@ var router = express.Router();
 
 import { Crawler } from '../../lib/crawler/crawler';
 import { prependOnceListener } from 'cluster';
+import { createDeflateRaw } from 'zlib';
 // var Crawler = require('../../lib/crawler/crawler');
 
 /* GET users listing. */
@@ -16,14 +17,32 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/search_options' , function(req, res, next){
-
-});
-
-router.post('/get' , function(req, res, next){
+router.get('/options' , function(req, res, next){
   res.set('Content-Type' , 'application/json');
 
+  var __DATA = {};
+  __DATA.CATEGORIES = Crawler.opts.getCate();
+  __DATA.TYPES = Crawler.opts.getType();
 
+  res.send(__DATA);
+});
+
+router.post('/get' , function(req , res, next){
+  res.set('Content-Type' , 'application/json');
+  Crawler.get(req.body)
+  .then(data => { res.send(data); })
+  .catch(function(){ 
+    console.log(arguments); 
+  });
+});
+
+router.get('/get' , function(req, res, next){
+  res.set('Content-Type' , 'application/json');
+  Crawler.get(req.query)
+  .then(data => { res.send(data); })
+  .catch(function(){ 
+    console.log(arguments); 
+  });
 });
 
 router.get('/example' , function(req, res, next){
