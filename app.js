@@ -25,15 +25,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const cors = require('cors');
+// cors 모듈을 가져와서
+ 
+const corsOpt = function(req, callbank) {
+  callbank(null, {origin: true});
+};
+// 모든 도메인의 통신을 허용합니다.
+ 
+app.options('*', cors(corsOpt));
+// 모든 options 메서드로의 사전 전달 접근을 허용합니다.
+ 
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/boards', boardsRouter);
 
-app.all('/*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

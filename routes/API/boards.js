@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/options' , function(req, res, next){
   res.set('Content-Type' , 'application/json');
-
+  
   var __DATA = {};
   __DATA.CATEGORIES = Crawler.opts.getCate();
   __DATA.TYPES = Crawler.opts.getType();
