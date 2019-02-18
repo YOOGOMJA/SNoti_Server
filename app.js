@@ -29,6 +29,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/boards', boardsRouter);
 
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
