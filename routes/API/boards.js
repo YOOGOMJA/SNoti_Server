@@ -38,6 +38,7 @@ router.post('/get' , function(req , res, next){
 
 router.get('/get' , function(req, res, next){
   res.set('Content-Type' , 'application/json');
+  console.log(req.query);
   Crawler.get(req.query)
   .then(data => { res.send(data); })
   .catch(function(){ 
