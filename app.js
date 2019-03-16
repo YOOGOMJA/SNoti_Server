@@ -25,6 +25,7 @@ app.options('*', cors(corsOpt));
 // 모든 options 메서드로의 사전 전달 접근을 허용합니다.
  
 
+
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization");

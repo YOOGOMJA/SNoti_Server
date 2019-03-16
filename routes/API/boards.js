@@ -4,6 +4,8 @@ var router = express.Router();
 import { Crawler } from '../../lib/crawler/crawler';
 import { prependOnceListener } from 'cluster';
 import { createDeflateRaw } from 'zlib';
+import { query } from '../../lib/db/query';
+
 // var Crawler = require('../../lib/crawler/crawler');
 
 /* GET users listing. */
@@ -66,6 +68,21 @@ router.get('/example' , function(req, res, next){
   res.send(
     __TEST_DATA
   );
+});
+
+router.get('/crawl' , function(req, res, next){
+  res.set('Content-Type' , 'application/json');
+
+  query.request()
+  .then(function(data){
+    // console.log(data);
+    // res.send(data);
+    res.send({});
+  } , function(data){
+    console.log('??');
+    res.send({});
+  });
+  
 });
 
 module.exports = router;
